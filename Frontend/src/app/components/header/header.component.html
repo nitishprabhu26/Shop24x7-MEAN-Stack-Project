@@ -1,0 +1,61 @@
+<header class="p-2 bg-warning text-black">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav mb-2 mb-md-0 justify-content-center">
+            <li><!--<a href="#" id="shop24x7Button" class="nav-link px-2 text-black">--><strong>Shop24x7</strong><!--</a>--></li>
+        </ul>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/home" class="nav-link px-2 text-black">Home</a></li>
+            <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Departments
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a *ngFor="let category of categoriesList" class="dropdown-item" [routerLink]="['/categories/', category ._id]">
+                    {{ category.name | titlecase }}</a>
+                </li>
+              </ul>
+            </div>
+            <li><a href="/products" class="nav-link px-2 text-black">Offers</a></li>
+            <div *ngIf="_authService.isAuthenticated()">
+              <li><a href="/profile" class="nav-link px-2 text-black">Profile</a></li>
+            </div>
+            <!-- admin only -->
+            <div class="dropdown" *ngIf="_authService.isAdmin() && _authService.isAuthenticated()">
+              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Product
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" routerLink="/admin/add-new-product">Add Product</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/products">Manage Product</a></li>
+              </ul>
+            </div>
+            
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search Products" aria-label="Search" id="search">
+        </form>
+
+        <div class="text-end">
+          <!-- cart -->
+          <button routerLink="/cart" type="button" class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            
+          </button>
+          <!-- logout -->
+          <button *ngIf="_authService.isAuthenticated()" type="button" class="btn" (click)="logOut()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+              <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            </svg>
+          </button>
+          <!-- login button -->
+          <button *ngIf="!_authService.isAuthenticated()" routerLink="/login" type="button" class="btn">Login</button>
+        </div>
+      </div>
+    </div>
+</header>

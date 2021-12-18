@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row" data-testid="manage-order-row">
+        <div class="mx-auto col-md-9 mt-4">
+            <div>
+                <h3 class="d-inline p-4">Manage Products</h3>
+                <button routerLink="/admin/add-new-product" class="btn-primary btn-sm d-inline p-2">Add New
+                    Product</button>
+            </div>
+            <div class="container">
+                <div class="row" *ngFor="let product of productsList">
+                    <hr class="mt-2 mb-2">
+
+                    <div class="col-md-10">
+                        <p>
+                            {{product.name}}</p><label class="fw-bold">
+                            Price:
+                        </label>
+                        <span>
+                            {{product.discountPrice | currency:'EUR'}}
+                        </span>
+                        <span class="text-danger text-decoration-line-through">
+                            {{product.price | currency:'EUR'}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        <a routerLink="/admin/products/{{product._id}}/edit" style="text-decoration: none;">Edit</a> | 
+                        <a class="text-danger" routerLink="/admin/products" style="text-decoration: none;" (click)="deleteProduct(product)">Delete</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

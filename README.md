@@ -1,2 +1,2 @@
-"# Shop24x7-MEAN-Stack-Project" 
-# Shop24x7 is an Online E-commerce Retail Store web application. Created the UX using Angular 13, API using Node.js - Express.js and connected with MongoDB database (MEAN STACK)).
+# Shop24x7-MEAN-Stack-Project
+Shop24x7 is an Online E-commerce Retail Store web application. Created the UX using Angular 13, API using Node.js - Express.js and connected with MongoDB database (MEAN STACK)).
